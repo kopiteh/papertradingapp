@@ -1,0 +1,38 @@
+<div class="container">
+
+  <div class="card">
+
+    <div class="card-title"> Transaction</div>
+
+    <div>
+      <form class="form-control" action="">
+        <table>
+          <tr>
+            <td><label for="asset_id"> Token </label></td>
+            <td>
+              <select name="asset_id" id="asset_id">
+                <option *ngFor="let token of tokens" value="{{token}}">{{token}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td> <label> Price: </label></td>
+            <td> <input type="text" disabled readonly> </td>
+          </tr>
+          <tr>
+            <td><label for="quantity"> Quantity: </label></td>
+            <td><input clsss="form-control" type="text" id="quantity"></td>
+          </tr>
+          <tr>
+            <td>Available funds</td>
+            <td><input type="text" value="Testing" disabled readonly ></td>
+          </tr>
+        </table>
+
+
+
+      </form>
+    </div>
+
+  </div>
+</div>

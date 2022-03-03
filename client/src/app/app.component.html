@@ -1,0 +1,49 @@
+<div class="container">
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">🧻 Trading</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" routerLink="['']" >Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" [routerLink]="['/tokens']" >Tokens</a>
+        <a class="nav-item nav-link" [routerLink]="['/transaction']"> Buy/Sell </a>
+        <a class="nav-item nav-link" [routerLink]="['/leaderboard']"> Leaderboard </a>
+      </div>
+    </div>
+  </nav>
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Zenapp</a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02" mdbCollapse #togglerSecondExample="mdbCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="['']">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="['/myportfolio']">My Portfolio</a>
+          </li>
+
+        </ul>
+        <form class="d-flex input-group w-auto">
+          <input type="search" class="form-control" placeholder="Type query" aria-label="Search" />
+          <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark">
+            Search
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav> -->
+</div>
+<hr>
+
+<div class="container">
+  <router-outlet> </router-outlet>
+</div>
+
+<hr>
+

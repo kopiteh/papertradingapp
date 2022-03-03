@@ -1,0 +1,17 @@
+<div class="container">
+
+  <table class="table table-hover table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Total Balance ($US)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of leaderboards">
+        <td>{{ user.name }}</td>
+        <td>{{ user.total_value }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
