@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenStorageService} from "../_services/token-storage.service";
 
 @Component({
   selector: 'app-txn',
@@ -9,9 +10,11 @@ export class TxnComponent implements OnInit {
 
   tokens : String[] = ['BTC','ETH','SOL','CRO'];
 
-  constructor() { }
+  constructor(private tokenSvc : TokenStorageService) { }
 
   ngOnInit(): void {
+    console.log('token>>>',this.tokenSvc.getToken())
+    console.log('user>>>>', this.tokenSvc.getUser())
   }
 
 }

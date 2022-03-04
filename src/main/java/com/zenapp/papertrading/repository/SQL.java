@@ -9,8 +9,8 @@ public class SQL {
     // * Joining different table to derive the leaderboard 
     public static final String GET_LEADERBOARD = 
         """
-        SELECT d.name, ROUND(SUM(c.value),2) AS total_value 
-        FROM 
+        SELECT d.username, ROUND(SUM(c.value),2) AS total_value
+        FROM
             (
                 SELECT a.fk_uid, a.asset_id, SUM(a.quantity) AS quantity, (SUM(a.quantity) * b.price_usd) as value 
                 FROM users_holding a
@@ -20,8 +20,9 @@ public class SQL {
             ) c
         JOIN users d
         ON c.fk_uid = d.uid
-        GROUP BY d.name
+        GROUP BY d.username
         ORDER BY total_value DESC
         """;
+
 
 }

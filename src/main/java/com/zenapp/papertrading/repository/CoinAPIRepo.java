@@ -41,7 +41,7 @@ public class CoinAPIRepo {
 
         while (rs.next()){
             Leaderboard leaderboard = new Leaderboard(); 
-            leaderboard.setName(rs.getString("name"));
+            leaderboard.setUsername(rs.getString("username"));
             leaderboard.setTotal_value(rs.getString("total_value"));
             result.add(leaderboard); 
         }

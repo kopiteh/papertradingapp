@@ -19,7 +19,7 @@ export class TokensComponent implements OnInit {
       .subscribe(data=>{
         this.assets = data
       })
-  }
+    }
 
   refreshPrice(){
     this.traderService.getLatestPrice()

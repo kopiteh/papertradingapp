@@ -5,6 +5,19 @@ export interface Asset{
 
 
 export interface Leaderboard{
-  name : string
+  username : string
   total_value : number
+}
+
+export interface User{
+  username: string
+  password: string
+}
+
+export interface newUser extends User{
+  email: string
+}
+export interface JwtToken{
+  subject: string
+  token: string
 }

@@ -5,15 +5,15 @@ import jakarta.json.JsonObject;
 
 public class Leaderboard {
     
-    private String name;
+    private String username;
     private String total_value;
 
-    public String getName() {
-        return this.name;
+    public String getusername() {
+        return this.username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTotal_value() {
@@ -26,7 +26,7 @@ public class Leaderboard {
 
     public JsonObject toJson() {
         return Json.createObjectBuilder()
-            .add("name", name)
+            .add("username", username)
             .add("total_value", total_value)
             .build();
     }

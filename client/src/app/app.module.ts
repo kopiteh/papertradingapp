@@ -28,6 +28,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokensComponent } from './components/tokens.component';
 import { TraderService } from './trader.service';
 import { TxnComponent } from './components/txn.component';
+import { RegisterComponent } from './components/register.component';
+import {TokenStorageService} from "./_services/token-storage.service";
+import {AuthInterceptor, authInterceptorProviders} from "./_services/auth.service";
+import { TestComponent } from './test/test/test.component';
 
 const appRoutes: Routes = [
   {path: '', component:LandingComponent},
@@ -35,7 +39,10 @@ const appRoutes: Routes = [
   {path: 'myportfolio', component:MyportfolioComponent},
   {path: 'tokens', component:TokensComponent},
   {path: 'transaction', component:TxnComponent},
-  {path: '**', redirectTo:'', pathMatch:'full'},
+  {path: 'register', component:RegisterComponent},
+  {path: `:${sessionStorage.getItem("subject")}/test`, component:TestComponent},
+  {path: '**', redirectTo:'', pathMatch:'full'}
+
 ]
 
 @NgModule({
@@ -45,7 +52,9 @@ const appRoutes: Routes = [
     LeaderboardComponent,
     MyportfolioComponent,
     TokensComponent,
-    TxnComponent
+    TxnComponent,
+    RegisterComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +79,7 @@ const appRoutes: Routes = [
     MdbValidationModule,
     BrowserAnimationsModule
   ],
-  providers: [TraderService],
+  providers: [TraderService, TokenStorageService, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Leaderboard } from '../models';
 import { TraderService } from '../trader.service';
+import {TokenStorageService} from "../_services/token-storage.service";
 
 @Component({
   selector: 'app-leaderboard',
@@ -11,13 +12,16 @@ export class LeaderboardComponent implements OnInit {
 
   leaderboards : Leaderboard[] = [];
 
-  constructor(private traderService : TraderService) { }
+  constructor(private traderService : TraderService, private tokenSvc:TokenStorageService) { }
 
   ngOnInit() {
-    this.traderService.getLeaderboard()
+    this.traderService.getSecureLeaderboard() //changed getLeaderboard() to getSecureLeaderboard()
       .subscribe(data => {
         this.leaderboards = data
       })
+    console.log('User  >>>', this.tokenSvc.getUser())
+    console.log('Token  >>>', this.tokenSvc.getToken())
+
   }
 
 }

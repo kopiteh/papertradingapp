@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Asset, Leaderboard } from "./models";
+import {Asset, JwtToken, Leaderboard, newUser, User} from "./models";
 
 @Injectable()
 export class TraderService {
@@ -13,6 +13,19 @@ export class TraderService {
 
   getLeaderboard() {
     return this.http.get<Leaderboard[]>(`/api/leaderboard`);
+  }
+
+
+  getSecureLeaderboard() {
+    return this.http.get<Leaderboard[]>(`/secure/api/leaderboard`);
+  }
+
+  userLogin(user: User){
+    return this.http.post<any>(`/api/authenticate`, user);
+  }
+
+  registerUser(newUser:newUser){
+    return this.http.post<any>(`/api/register`,newUser)
   }
 
 }
