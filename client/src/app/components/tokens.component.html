@@ -13,8 +13,13 @@
         <td>{{i}}</td>
         <td>{{asset.asset_id}}</td>
         <td>{{asset.price_usd}}</td>
+        <td>
+          <button type="button" class="btn btn-rounded btn-success" > Buy </button>
+        </td>
       </tr>
     </tbody>
   </table>
   <button class="btn btn-success" (click)="refreshPrice()">Refresh Price</button>
 </div>
+
+

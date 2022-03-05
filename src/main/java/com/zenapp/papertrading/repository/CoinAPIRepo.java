@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import com.zenapp.papertrading.models.Asset;
 import com.zenapp.papertrading.models.Leaderboard;
 
+import com.zenapp.papertrading.models.MyPortfolio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -47,6 +48,27 @@ public class CoinAPIRepo {
         }
         
         return (Collections.unmodifiableList(result));
+    }
+
+    public List<MyPortfolio> getMyPortfolio(String username){
+        List<MyPortfolio> result = new LinkedList<>();
+
+        final SqlRowSet rs = template.queryForRowSet(GET_MYPORTFOLIO,username);
+
+        while (rs.next()){
+            MyPortfolio portfolio = new MyPortfolio();
+            portfolio.setUsername(rs.getString("fk_username"));
+            portfolio.setAsset_id(rs.getString("asset_id"));
+            portfolio.setQuantity(rs.getFloat("quantity"));
+            portfolio.setValue(rs.getFloat("value"));
+
+
+
+            result.add(portfolio);
+        }
+
+        return (Collections.unmodifiableList(result));
+
     }
 
 }

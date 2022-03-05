@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models';
 import { TraderService } from '../trader.service';
 import {TokenStorageService} from "../_services/token-storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-landing',
@@ -13,8 +14,12 @@ import {TokenStorageService} from "../_services/token-storage.service";
 export class LandingComponent implements OnInit {
 
   loginForm! : FormGroup;
+  username! : string;
 
-  constructor(private fb: FormBuilder, private traderSvc : TraderService, private tokenSvc: TokenStorageService)  { }
+  constructor(private fb: FormBuilder,
+              private traderSvc : TraderService,
+              private tokenSvc: TokenStorageService,
+              private router : Router)  { }
 
   ngOnInit(): void {
     this.createForm();
@@ -38,6 +43,8 @@ export class LandingComponent implements OnInit {
         this.tokenSvc.saveToken(response['token'])
         this.tokenSvc.saveUser(response['subject'])
       })
+
+    this.router.navigate(['/myportfolio'])
   }
 
 }

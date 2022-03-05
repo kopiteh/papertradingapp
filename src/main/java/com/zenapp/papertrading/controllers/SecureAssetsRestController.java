@@ -1,4 +1,4 @@
-package com.zenapp.papertrading.controllers;
+/* package com.zenapp.papertrading.controllers;
 
 import com.zenapp.papertrading.PapertradingApplication;
 import com.zenapp.papertrading.models.Asset;
@@ -42,3 +42,4 @@ public class SecureAssetsRestController {
         return ResponseEntity.ok().body(arrBuilder.build().toString());
     }
 }
+ */

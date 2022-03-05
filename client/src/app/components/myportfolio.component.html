@@ -1,1 +1,33 @@
-<p>myportfolio works!</p>
+<div class="card text-center">
+  <div class="card-header">
+    <h1>Welcome back!</h1>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Your current portfolio</h5>
+    <div>
+      <table class="table">
+        <thead>
+        <tr >
+          <th>Token</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let myportfolio of myPortfolios">
+            <td>{{myportfolio.asset_id}}</td>
+            <td>{{myportfolio.asset_id}}</td>
+            <td>{{myportfolio.quantity}}</td>
+            <td>{{myportfolio.value}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+    <a href="#" class="btn btn-primary">Button</a>
+  </div>
+<!--  <div class="card-footer text-muted">
+    <h2>Portfolio Value: {{total_value}}}</h2>
+  </div>-->
+</div>

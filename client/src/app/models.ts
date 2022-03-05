@@ -1,7 +1,15 @@
 export interface Asset{
   asset_id: string
   price_usd: number
-};
+}
+
+export interface MyPortfolio{
+  username: string
+  asset_id: string
+  quantity: number
+  value: number
+  total_value: number;
+}
 
 
 export interface Leaderboard{
@@ -21,3 +29,4 @@ export interface JwtToken{
   subject: string
   token: string
 }
+

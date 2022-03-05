@@ -40,7 +40,7 @@ const appRoutes: Routes = [
   {path: 'tokens', component:TokensComponent},
   {path: 'transaction', component:TxnComponent},
   {path: 'register', component:RegisterComponent},
-  {path: `:${sessionStorage.getItem("subject")}/test`, component:TestComponent},
+  {path: `test`, component:TestComponent},
   {path: '**', redirectTo:'', pathMatch:'full'}
 
 ]
@@ -77,7 +77,7 @@ const appRoutes: Routes = [
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [TraderService, TokenStorageService, authInterceptorProviders],
   bootstrap: [AppComponent]

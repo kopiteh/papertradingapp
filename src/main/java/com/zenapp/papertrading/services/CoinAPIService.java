@@ -60,8 +60,7 @@ public class CoinAPIService {
                     .collect(Collectors.toList());
 
             repo.batchUpdateListings(result);
-            //logger.log(Level.INFO, result.get(0).toString());
-            
+
             return result;
         } catch (Exception e) {
             e.printStackTrace();

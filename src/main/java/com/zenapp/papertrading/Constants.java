@@ -3,8 +3,10 @@ package com.zenapp.papertrading;
 public class Constants {
     
     public static final String ASSET_LIST 
-        = "BTC;ETH;SOL;CRO";
-    /* 
+        = "BTC;ETH;BNB;XRP;LUNA;SOL;ADA;AVAX;DOT";
+
+
+    /*
     public static final String ASSET_LIST 
         = "BTC;ETH;USD;BNB;USDC;XRP;LUNA;SOL;ADA;AVAX;DOT;BUSD;DOGE;SHIB;WBTC;CRO;MATIC;DAI;ATOM"; */
 

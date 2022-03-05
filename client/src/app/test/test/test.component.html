@@ -1,1 +1,90 @@
-<p>test works!</p>
+<div class="container">
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Token</th>
+      <th scope="col">Price (USD)</th>
+    </tr>
+    </thead>
+    <tbody class="table-striped" *ngFor="let asset of assets; index as i">
+    <tr>
+      <td>{{i}}</td>
+      <td>{{asset.asset_id}}</td>
+      <td>{{asset.price_usd}}</td>
+      <td>
+        <button type="button" 
+                class="btn btn-primary" 
+                data-mdb-toggle="modal" 
+                data-mdb-target="#staticBackdrop"
+                (click)="print_object(i)"
+        >
+          Buy
+        </button>
+      </td>
+      <td>
+        <input type="text">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-mdb-backdrop="static"
+  data-mdb-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          asdasd
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

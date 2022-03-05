@@ -15,7 +15,7 @@ export class LeaderboardComponent implements OnInit {
   constructor(private traderService : TraderService, private tokenSvc:TokenStorageService) { }
 
   ngOnInit() {
-    this.traderService.getSecureLeaderboard() //changed getLeaderboard() to getSecureLeaderboard()
+    this.traderService.getLeaderboard() //changed getLeaderboard() to getSecureLeaderboard()
       .subscribe(data => {
         this.leaderboards = data
       })
