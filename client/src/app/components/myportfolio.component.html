@@ -7,27 +7,39 @@
     <div>
       <table class="table">
         <thead>
-        <tr >
-          <th>Token</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Value</th>
+        <tr>
+          <th scope="col">Token</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Value</th>
+          <th scope="col">Quantity to SELL</th>
+          <th scope="col"></th>
         </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let myportfolio of myPortfolios">
-            <td>{{myportfolio.asset_id}}</td>
-            <td>{{myportfolio.asset_id}}</td>
-            <td>{{myportfolio.quantity}}</td>
-            <td>{{myportfolio.value}}</td>
-          </tr>
+        <tbody [formGroup]="sellForm">
+        <tr *ngFor="let myportfolio of myPortfolios; index as i">
+          <td>{{myportfolio.asset_id}}</td>
+          <td>{{myportfolio.price_usd}}</td>
+          <td>{{myportfolio.quantity}}</td>
+          <td>{{myportfolio.value}}</td>
+          <td>
+            <input type="text" formControlName="quantity">
+          </td>
+          <td>
+            <button type="button"
+                    class="btn btn-primary btn-danger"
+                    (click)="sellToken(i)"
+            >
+              Sell
+            </button>
+          </td>
+        </tr>
         </tbody>
 
       </table>
     </div>
-    <a href="#" class="btn btn-primary">Button</a>
+    <div class="card-footer">
+      <h3>Total value: <span>{{total_value}}</span> </h3>
+    </div>
   </div>
-<!--  <div class="card-footer text-muted">
-    <h2>Portfolio Value: {{total_value}}}</h2>
-  </div>-->
 </div>

@@ -8,10 +8,10 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   loginForm! : FormGroup;
   username! : string;
@@ -42,8 +42,8 @@ export class LandingComponent implements OnInit {
         console.log(response)
         this.tokenSvc.saveToken(response['token'])
         this.tokenSvc.saveUser(response['subject'])
-      })
 
+      })
     this.router.navigate(['/myportfolio'])
   }
 

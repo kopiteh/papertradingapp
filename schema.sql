@@ -1,86 +1,61 @@
-DROP DATABASE IF EXISTS papertrading; 
+DROP
+DATABASE IF EXISTS papertrading;
 
-CREATE DATABASE papertrading; 
+CREATE
+DATABASE papertrading;
 
-USE papertrading; 
+USE
+papertrading;
 
-CREATE TABLE listings (
-    asset_id varchar(64) PRIMARY KEY, 
-    price_usd varchar(64)
-); 
-
-
--- Initializaing the table with some symbols 
-INSERT INTO listings (asset_id, price_usd)
-VALUES  
-    ('BTC', 0), 
-    ('ETH', 0),
-    ('SOL', 0),
-    ('CRO', 0);
-
-
-CREATE TABLE users (
-	uid int PRIMARY KEY AUTO_INCREMENT,
-    name varchar(64) NOT NULL,
-    password varchar(256) NOT NULL,
-    email varchar(64) NOT NULL,
-    mobile int
+CREATE TABLE listings
+(
+    asset_id  varchar(10) PRIMARY KEY,
+    price_usd float
 );
 
--- Initialise the users table with some values 
-INSERT INTO users (name, password, email, mobile)
-VALUES 
-('Paper Hand', SHA1('root1234'), 'paper@gmail.com', 91234567),
-('Diamond Hand', SHA1('root1234'), 'diamond@gmail.com', 97654321);
+
+-- Initializaing the table with some token symbols
+INSERT INTO listings (asset_id, price_usd)
+VALUES ('BTC', 40819.44),
+       ('ETH', 2682.87),
+       ('BNB', 388.81),
+       ('XRP', 0.74),
+       ('LUNA', 90.79),
+       ('SOL', 91.87),
+       ('ADA', 0.87),
+       ('AVAX', 79.39),
+       ('DOT', 17.15);
 
 
-CREATE TABLE users_holding(
-	txn_number int PRIMARY KEY AUTO_INCREMENT,
-    asset_id varchar(64), 
-    quantity decimal(30,10), 
-    fk_uid int,
-	foreign key (fk_uid)
-        references users(uid)
+CREATE TABLE users
+(
+    uid      int PRIMARY KEY AUTO_INCREMENT,
+    username varchar(64)  NOT NULL UNIQUE,
+    password varchar(256) NOT NULL,
+    email    varchar(64)  NOT NULL UNIQUE,
+    mobile   int,
+    balance  float        NOT NULL DEFAULT 10000 CHECK (balance > 0)
+);
+
+-- Initialise the users table with some values
+INSERT INTO users (username, password, email, mobile)
+VALUES ('paperhand', SHA1('root'), 'paper@gmail.com', 91234567),
+       ('diamondhand', SHA1('root'), 'diamond@gmail.com', 97654321),
+       ('root', SHA1('root'), 'growroot@gmail.com', 90921237);
+
+
+CREATE TABLE transactions
+(
+    txn_number  int PRIMARY KEY AUTO_INCREMENT,
+    asset_id    varchar(64),
+    quantity    float,
+    price_usd   float,
+    fk_username varchar(64),
+    last_update timestamp
+        default current_timestamp
+        on update current_timestamp,
+    foreign key (fk_username)
+        references users (username)
         ON DELETE CASCADE
         ON UPDATE RESTRICT
 );
-
-INSERT INTO users_holding (asset_id, quantity, fk_uid)
-VALUES
-('ETH', 2, 1),
-('SOL', 10, 1),
-('CRO', 2000, 1),
-('BTC', 0.3, 2),
-('CRO', 1521, 2),
-('SOL', 200, 2),
-('ETH', 1.2, 2),
-('BTC', -0.1, 2);
-
-
-
-SELECT * FROM USERS_HOLDING;
-
--- To display holdings of users 
-SELECT a.fk_uid, a.asset_id, SUM(a.quantity) as quantity, (SUM(a.quantity) * b.price_usd) as value 
-FROM users_holding a
-JOIN listings b
-ON a.asset_id = b.asset_id
-GROUP BY a.fk_uid, a.asset_id, b.name;
-
--- To display leaderboard 
-SELECT d.name, sum(c.value) as total_value 
-FROM 
-	(
-		SELECT a.fk_uid, a.asset_id, SUM(a.quantity) as quantity, (SUM(a.quantity) * b.price_usd) as value 
-		FROM users_holding a
-		JOIN listings b
-		ON a.asset_id = b.asset_id
-		GROUP BY a.fk_uid, a.asset_id
-    ) c
-JOIN users d
-ON c.fk_uid = d.uid
-GROUP BY d.name
-ORDER BY total_value DESC
-;
-    
-

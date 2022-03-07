@@ -6,9 +6,9 @@ export interface Asset{
 export interface MyPortfolio{
   username: string
   asset_id: string
+  price_usd: number
   quantity: number
   value: number
-  total_value: number;
 }
 
 
@@ -29,4 +29,11 @@ export interface JwtToken{
   subject: string
   token: string
 }
+
+export interface Order {
+  asset_id: string
+  price_usd: number
+  quantity: number
+}
+
 

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Asset } from '../models';
-import { TraderService } from '../trader.service';
+import {Component, OnInit} from '@angular/core';
+import {Asset, Order} from '../models';
+import {TraderService} from '../trader.service';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tokens',
@@ -9,22 +11,51 @@ import { TraderService } from '../trader.service';
 })
 export class TokensComponent implements OnInit {
 
-  assets: Asset[]=[];
+  assets: Asset[] = [];
+  quantity!: number;
+  buyForm!: FormGroup
 
-  constructor(private traderService : TraderService) { };
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private traderSvc: TraderService) {
+  }
 
   ngOnInit() {
+    this.createform();
 
-    this.traderService.getLatestPrice()
-      .subscribe(data=>{
+    this.traderSvc.getLatestPrice()
+      .subscribe(data => {
         this.assets = data
       })
+  }
+
+  createform() {
+    this.buyForm = this.fb.group({
+      quantity: this.fb.control('', Validators.required)
+    })
+  }
+
+  submitBuy(i: number) {
+    let selectedToken = this.assets[i];
+
+    const order: Order = {
+      asset_id: selectedToken.asset_id,
+      price_usd: parseFloat(String(selectedToken.price_usd)),
+      quantity: parseFloat(this.buyForm.controls['quantity'].value)
     }
 
-  refreshPrice(){
-    this.traderService.getLatestPrice()
-    .subscribe(data=>{
-      this.assets = data
-    })
+    console.log(order)
+    this.traderSvc.buy(order)
+      .subscribe(response => {
+        console.log(response)
+      })
+
+    this.router.navigate(['/myportfolio'])
+
+
+  }
+
+  refreshPrice() {
+    window.location.reload();
   }
 }

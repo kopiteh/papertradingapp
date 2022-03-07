@@ -1,3 +1,4 @@
+<script src="../test/test/test.component.ts"></script>
 <div class="container">
 
   <table class="table table-hover">
@@ -6,17 +7,26 @@
         <th scope="col"></th>
         <th scope="col">Token</th>
         <th scope="col">Price (USD)</th>
+        <th scope="col">Quantity to BUY</th>
+        <th scope="col"></th>
       </tr>
     </thead>
-    <tbody class="table-striped" *ngFor="let asset of assets; index as i">
-      <tr>
-        <td>{{i}}</td>
-        <td>{{asset.asset_id}}</td>
-        <td>{{asset.price_usd}}</td>
-        <td>
-          <button type="button" class="btn btn-rounded btn-success" > Buy </button>
-        </td>
-      </tr>
+    <tbody [formGroup]="buyForm" class="table-striped" *ngFor="let asset of assets; index as i">
+    <tr>
+      <td>{{asset.asset_id}}</td>
+      <td>{{asset.price_usd}}</td>
+      <td>
+        <input type="text" class="form-control" formControlName="quantity">
+      </td>
+      <td>
+        <button type="button"
+                class="btn btn-rounded btn-success"
+                (click)="submitBuy(i)"
+        >
+          Buy
+        </button>
+      </td>
+    </tr>
     </tbody>
   </table>
   <button class="btn btn-success" (click)="refreshPrice()">Refresh Price</button>
