@@ -1,11 +1,20 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Injectable} from "@angular/core";
 import {Asset, Leaderboard, MyPortfolio, newUser, Order, User} from "./models";
 
 @Injectable()
 export class TraderService {
 
-  constructor (private http: HttpClient){}
+  constructor(private http: HttpClient) {
+  }
+
+  userLogin(user: User) {
+    return this.http.post<any>(`/api/authenticate`, user);
+  }
+
+  registerUser(newUser: newUser) {
+    return this.http.post<any>(`/api/register`, newUser)
+  }
 
   getLatestPrice() {
     return this.http.get<Asset[]>(`/secure/api/assets`);
@@ -19,23 +28,16 @@ export class TraderService {
     return this.http.get<Leaderboard[]>(`/secure/api/leaderboard`);
   }
 
-  userLogin(user: User){
-    return this.http.post<any>(`/api/authenticate`, user);
-  }
 
-  registerUser(newUser:newUser){
-    return this.http.post<any>(`/api/register`,newUser)
-  }
-
-  getMyPortfolio(){
+  getMyPortfolio() {
     return this.http.get<MyPortfolio[]>(`/secure/api/myportfolio`)
   }
 
-  buy(order: Order){
+  buy(order: Order) {
     return this.http.post<any>(`/secure/api/buy`, order)
   }
 
-  sell(order: Order){
+  sell(order: Order) {
     return this.http.post<any>(`/secure/api/sell`, order)
   }
 }
